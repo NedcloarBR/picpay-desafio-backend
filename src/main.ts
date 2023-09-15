@@ -3,6 +3,7 @@ import { NestFactory } from "@nestjs/core";
 import { config } from "dotenv";
 import { name } from "../package.json";
 import { AppModule } from "./app.module";
+
 async function bootstrap() {
   config();
   const logger = new Logger();

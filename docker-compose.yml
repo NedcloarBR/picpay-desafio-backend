@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  backend:
+    build: .docker/Backend
+    container_name: backend
+    ports:
+      - "4444:4444"
+    volumes:
+      - .:/home/node/backend
+    depends_on:
+      - database
+
+  database:
+    build: .docker/Postgres
+    container_name: database
+    restart: always
+    tty: true
+    ports:
+      - "5432:5432"
+    volumes:
+      - .docker/Backend/database/development:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=desafiopicpay
+      - POSTGRES_DB=desafiopicpay
