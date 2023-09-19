@@ -2,7 +2,7 @@
 /dist
 /node_modules
 */cache
-install-stage.gz
+install-state.gz
 
 # Logs
 logs

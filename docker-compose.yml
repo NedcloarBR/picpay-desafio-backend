@@ -19,7 +19,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - .docker/Backend/database/development:/var/lib/postgresql/data
+      - .docker/Postgres/database/development:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=desafiopicpay
       - POSTGRES_DB=desafiopicpay
