@@ -13,7 +13,6 @@ export class IsValidDocument implements ValidatorConstraintInterface {
   private length: number;
 
   validate(document: string, args) {
-    console.log(args);
     const { userType } = args.object;
     this.userType = userType;
     this.documentLength = document.toString().length;
