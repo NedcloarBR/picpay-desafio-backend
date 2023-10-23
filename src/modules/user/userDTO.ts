@@ -8,7 +8,7 @@ import {
   Length,
   Validate,
 } from "class-validator";
-import { IsValidDocument } from "src/common/decorators";
+import { IsValidDocument } from "src/common/decorators/IsValidDocument";
 
 export class UserDTO {
   @IsString()

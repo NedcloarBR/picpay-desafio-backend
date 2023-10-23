@@ -3,6 +3,11 @@ import { NestFactory } from "@nestjs/core";
 import { config } from "dotenv";
 import { name } from "../package.json";
 import { AppModule } from "./app.module";
+import { HttpExceptionFilter } from "./common/filters/http-exception.filter";
+import { ConflictInterceptor } from "./common/interceptors/Conflict";
+import { DatabaseInterceptor } from "./common/interceptors/Database";
+import { NotFoundInterceptor } from "./common/interceptors/NotFound";
+import { UnauthorizedInterceptor } from "./common/interceptors/Unauthorized";
 
 async function bootstrap() {
   config();
@@ -17,6 +22,13 @@ async function bootstrap() {
         forbidNonWhitelisted: true,
         transform: true,
       }),
+    );
+    app.useGlobalFilters(new HttpExceptionFilter());
+    app.useGlobalInterceptors(
+      new ConflictInterceptor(),
+      new DatabaseInterceptor(),
+      new UnauthorizedInterceptor(),
+      new NotFoundInterceptor(),
     );
     await app.listen(PORT);
     logger.log(

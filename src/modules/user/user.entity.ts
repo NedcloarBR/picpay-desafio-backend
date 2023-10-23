@@ -1,6 +1,7 @@
 import { $Enums } from "@prisma/client";
 
 export class UserEntity {
+  public id: string;
   public name: string;
   public document: string;
   public email: string;

@@ -1,1 +1,0 @@
-export { IsValidDocument } from "./IsValidDocument";

@@ -10,27 +10,45 @@ export class UserRepository implements IUserRepository {
   constructor(
     @Inject(Services.PRISMA) private readonly prisma: PrismaService,
   ) {}
-  get(document: number): Promise<UserEntity> {
-    throw new Error("Method not implemented.");
-  }
 
   public async create(userDTO: UserDTO): Promise<UserEntity> {
-    return this.prisma.user.create({
+    return await this.prisma.user.create({
       data: userDTO,
     });
   }
 
-  // public async get(document: number): Promise<UserEntity> {
-  //   return this.prisma.user.findFirst({
-  //     where: { document },
-  //     include: {
-  //       receivedTransactions: true,
-  //       sentTransactions: true,
-  //     },
-  //   });
-  // }
+  public async getByDocument(document: string): Promise<UserEntity> {
+    return await this.prisma.user.findFirst({
+      where: { document },
+      include: {
+        receivedTransactions: true,
+        sentTransactions: true,
+      },
+    });
+  }
+
+  public async getByEmail(email: string): Promise<UserEntity> {
+    return await this.prisma.user.findFirst({
+      where: { email },
+      include: {
+        receivedTransactions: true,
+        sentTransactions: true,
+      },
+    });
+  }
 
   public async getAll(): Promise<UserEntity[]> {
-    return this.prisma.user.findMany();
+    return await this.prisma.user.findMany();
+  }
+
+  public async update(document: string, money: number): Promise<UserEntity> {
+    return await this.prisma.user.update({
+      where: {
+        document,
+      },
+      data: {
+        money,
+      },
+    });
   }
 }

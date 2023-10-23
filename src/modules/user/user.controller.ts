@@ -19,7 +19,7 @@ export class UserController {
 
   @Get(":document")
   public async getUser(@Param("document") document: string) {
-    return await this.service.get(+document);
+    return await this.service.getByDocument(document);
   }
 
   @Get("all")
